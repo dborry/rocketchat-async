@@ -52,6 +52,8 @@ class Dispatcher:
         if self._verbose:
             print(f'Incoming: {msg}')
         parsed = json.loads(msg)
+        if 'msg' not in parsed:
+            return
         if parsed['msg'] == 'result':
             msg_id = parsed['id']
             if msg_id in self._futures:
